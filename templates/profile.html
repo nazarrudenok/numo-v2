@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нумо</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <p class="logo" onclick="window.location.href='/'">Нумо</p>
+        <div class="nav-items">
+            <span class="material-symbols-outlined icon" onclick="window.location.href='/logout'">
+                logout
+            </span>
+        </div>
+    </header>
+    <main class="main">
+        <div class="user-cont">
+            <div class="avatar">{{ letter }}</div>
+            <p class="username">@{{ username }}</p>
+            <div class="user-info">
+                <div class="info-item">
+                    <p class="info-key">{{ habbits_count }}</p>
+                    <p class="info-value">Звичок</p>
+                </div>
+                <div class="info-item">
+                    <p class="info-key">{{ user_data[0][6] }}</p>
+                    <p class="info-value">Макс. днів</p>
+                </div>
+                <div class="info-item">
+                    <p class="info-key">-</p>
+                    <p class="info-value">Досягнень</p>
+                </div>
+            </div>
+        </div>
+        <div class="about-cont">
+            <p class="about-title">Про вас</p>
+            <div class="about-items-cont">
+                <div class="about-item city-about">
+                    <p class="about-key">Місто:</p>
+                    <form action="/city" method="POST" class="input-cont">
+                        <select id="city" name="city" class="input-about">
+                            <option value="none" selected disabled>{{ city if city != '' else 'Оберіть місто' }}</option>
+                            <option value="Дніпро">Дніпро</option>
+                            <option value="Донецьк">Донецьк</option>
+                            <option value="Житомир">Житомир</option>
+                            <option value="Запоріжжя">Запоріжжя</option>
+                            <option value="Івано-Франківськ">Івано-Франківськ</option>
+                            <option value="Київ">Київ</option>
+                            <option value="Кропивницький">Кропивницький</option>
+                            <option value="Луганськ">Луганськ</option>
+                            <option value="Луцьк">Луцьк</option>
+                            <option value="Львів">Львів</option>
+                            <option value="Миколаїв">Миколаїв</option>
+                            <option value="Одеса">Одеса</option>
+                            <option value="Полтава">Полтава</option>
+                            <option value="Рівне">Рівне</option>
+                            <option value="Суми">Суми</option>
+                            <option value="Тернопіль">Тернопіль</option>
+                            <option value="Ужгород">Ужгород</option>
+                            <option value="Харків">Харків</option>
+                            <option value="Херсон">Херсон</option>
+                            <option value="Хмельницький">Хмельницький</option>
+                            <option value="Черкаси">Черкаси</option>
+                            <option value="Чернівці">Чернівці</option>
+                            <option value="Чернігів">Чернігів</option>
+                        </select>
+                        <button type="submit" class="btn-check">
+                            <span class="material-symbols-outlined icon check" onclick="window.location.href='/logout'">
+                                check_circle
+                            </span>
+                        </button>
+                    </form>
+                </div>
+                <div class="about-item">
+                    <p class="about-key">Опис:</p>
+                    <form action="/about" method="POST" class="input-cont">
+                        <textarea name="about" class="input-about" rows="3" placeholder="придумайте опис" required>{{ about }}</textarea>
+                        <button type="submit" class="btn-check">
+                            <span class="material-symbols-outlined icon check" onclick="window.location.href='/logout'">
+                                check_circle
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <p class="btn nav-btn" onclick="window.location.href='/list'">
+                <span class="material-symbols-outlined">
+                    format_list_bulleted
+                </span>
+                Звички
+            </p>
+            <p class="btn nav-btn">
+                <span class="material-symbols-outlined">
+                    trophy
+                </span>
+                Досягнення
+            </p>
+        </div>
+        <div class="habbits-cont">
+            <p class="habbits-title">Активні звички</p>
+            {% if user_actives %}
+                {% if username == user_actives[0][3] %}
+                    {% for i in user_actives %}
+                    <div class="widgets-cont" id="widget">
+                        <div class="main-widget-cont">
+                            <p class="main-widget-title">{{ i[2] }}</p>
+                            <div class="team">
+                                <p class="team-username">
+                                    <span class="material-symbols-outlined group-icon">
+                                        group
+                                    </span>
+                                    {% if i[4] == '' %}
+                                        Друг ще не приєднався
+                                    {% elif username == i[3] %}
+                                        @{{ i[4] }}
+                                    {% else %}
+                                        @{{ i[3] }}
+                                    {% endif %}
+                                    <!-- {{ i[4] if i[4] != '' else 'Друг ще не приєднався'}} -->
+                                </p>
+                            </div>
+                            <div class="progress">
+                                <p class="progress-title">Ваш прогрес</p>
+                                <div class="progress-dots">
+                                    {% for j in range(i[6]) %}
+                                        <div class="dot"></div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-widget-cont">
+                            <div class="widget-info-cont">
+                                <p class="widget-key">{{ i[6] }}</p>
+                                <p class="widget-value">дні підтримання звички</p>
+                            </div>
+                            <div class="widget-info-cont">
+                                <p class="widget-key">{{ i[8] }}%</p>
+                                <p class="widget-value">пройдено до мети</p>
+                            </div>
+                            {% if current_day == i[7]|string %}
+                                <p class="btn add-btn back-tomorrow">+ День</p>
+                            {% else %}
+                                <p class="btn add-btn" onclick="window.location.href='/day?q={{ i[1] }}'">+ День</p>
+                            {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    {% for i in user_actives %}
+                    <div class="widgets-cont" id="widget">
+                        <div class="main-widget-cont">
+                            <p class="main-widget-title">{{ i[2] }}</p>
+                            <div class="team">
+                                <p class="team-username">
+                                    <span class="material-symbols-outlined group-icon">
+                                        group
+                                    </span>
+                                    {% if i[4] == '' %}
+                                        Друг ще не приєднався
+                                    {% elif username == i[3] %}
+                                        @{{ i[4] }}
+                                    {% else %}
+                                        @{{ i[3] }}
+                                    {% endif %}
+                                </p>
+                            </div>
+                            <div class="progress">
+                                <p class="progress-title">Ваш прогрес</p>
+                                <div class="progress-dots">
+                                    {% for j in range(i[9]) %}
+                                        <div class="dot"></div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-widget-cont">
+                            <div class="widget-info-cont">
+                                <p class="widget-key">{{ i[9] }}</p>
+                                <p class="widget-value">дні підтримання звички</p>
+                            </div>
+                            <div class="widget-info-cont">
+                                <p class="widget-key">{{ i[11] }}%</p>
+                                <p class="widget-value">пройдено до мети</p>
+                            </div>
+                            {% if current_day == i[10]|string %}
+                                <p class="btn add-btn back-tomorrow">+ День</p>
+                            {% else %}
+                                <p class="btn add-btn" onclick="window.location.href='/day_mate?q={{ i[1] }}'">+ День</p>
+                            {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+        </div>
+        {% include 'menu.html' %}
+    </main>
+</body>
+</html>

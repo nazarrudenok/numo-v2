@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нумо</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <p class="logo" onclick="window.location.href='/'" style="opacity: 0%;">Нумо</p>
+        <div class="nav-items">
+            <!-- <span class="material-symbols-outlined icon person" onclick="window.location.href='/profile'">
+                person
+            </span> -->
+            <span class="material-symbols-outlined icon cancel" onclick="window.location.href='/'">
+                cancel
+            </span>
+        </div>
+    </header>
+    <main class="main">
+        <div class="create-cont">
+            <form action="/create" method="POST" class="create-form">
+                <p class="create-title">Нова звичка</p>
+                <div class="create-inputs-cont">
+                    <input type="text" class="create-input" placeholder="Що за звичка?" name="title" autocomplete="off" required>
+                    <textarea class="create-input" placeholder="Опишіть свою звичку.
+Яка її роль у вашому житті?" name="description" autocomplete="off" required></textarea>
+                    <input type="text" class="create-input"placeholder="Мета у днях. Рекомендуємо 30 днів" name="goal" autocomplete="off" required>
+                    <input type="submit" value="Створити" class="btn-create">
+                </div>
+            </form>
+        </div>
+        {% include 'menu.html' %}
+    </main>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

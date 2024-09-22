@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нумо</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <p class="logo" onclick="window.location.href='/'">Нумо</p>
+        <div class="nav-items">
+            <!-- <span class="material-symbols-outlined icon person" onclick="window.location.href='/profile'">
+                person
+            </span> -->
+            <span class="material-symbols-outlined icon create" onclick="window.location.href='/new'">
+                add_circle
+            </span>
+        </div>
+    </header>
+    <main class="main">
+        <div class="habbits-list home-habbits">
+            {% for i in habbits_list %}
+            <div class="habbit">
+                <div class="habbit-title-cont">
+                    <p class="habbit-title">{{ i[3] }}</p>
+                    <p class="habbit-id">@{{ i[2] }}</p>
+                </div>
+                <div class="habbit-description-cont">
+                    <p class="habbit-description">{{ i[4] }}</p>
+                    <p class="habbit-city">
+                        <span class="material-symbols-outlined habbit-icon">
+                            location_on
+                        </span>
+                        {{ i[8] }}
+                    </p>
+                </div>
+                <p class="habbit-date">{{ i[6].strftime('%H:%M | %d.%m.%Y') }}</p>
+                <div class="habbit-buttons home-buttons">
+                    <span class="material-symbols-outlined report">
+                        report
+                    </span>
+                    <div class="habbit-add-cont">
+                        <span class="material-symbols-outlined like-icon" onclick="window.location.href='/like?q={{ i[1] }}'">
+                            favorite
+                        </span>
+                        <p class="habbit-btn" onclick="window.location.href='/connect?q={{ i[1] }}'">
+                            <span class="material-symbols-outlined habbit-icon">
+                                person_add
+                            </span>
+                            Приєднатись
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% include 'menu.html' %}
+    </main>
+</body>
+</html>

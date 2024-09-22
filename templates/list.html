@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нумо</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <p class="logo" onclick="window.location.href='/profile'">
+            <span class="material-symbols-outlined icon">
+                arrow_left_alt
+            </span>
+        </p>
+    </header>
+    <main class="main">
+        <div class="list-cont">
+            <div class="buttons list-buttons">
+                <p class="btn nav-btn" onclick="window.location.href='/list'">
+                    <span class="material-symbols-outlined">
+                        edit_square
+                    </span>
+                    Створені вами
+                </p>
+                <p class="btn nav-btn" onclick="window.location.href='/list-connected'">
+                    <span class="material-symbols-outlined">
+                        link
+                    </span>
+                    Ви приєднались
+                </p>
+                <p class="btn nav-btn" onclick="window.location.href='/'">
+                    <span class="material-symbols-outlined">
+                        verified
+                    </span>
+                    Завершені
+                </p>
+            </div>
+            <div class="habbits-list">
+                {% for i in user_habbits %}
+                <div class="habbit">
+                    <div class="habbit-title-cont">
+                        <p class="habbit-title">{{ i[3] }}</p>
+                        <p class="habbit-id">#{{ i[1] }}</p>
+                    </div>
+                    <p class="habbit-description">{{ i[4] }}</p>
+                    <p class="habbit-date">{{ i[6].strftime('%H:%M | %d.%m.%Y') }}</p>
+                    <div class="habbit-buttons">
+                        {% if i[7] == '' %}
+                            <p class="habbit-btn" onclick="window.location.href='/add_active?q={{ i[1] }}&title={{ i[3] }}&goal={{ i[5] }}'">
+                                <span class="material-symbols-outlined habbit-icon">
+                                    add_circle
+                                </span>
+                                До активних
+                            </p>
+                        {% else %}
+                            <p class="habbit-btn" onclick="window.location.href='/delete_active?q={{ i[1] }}'">
+                                <span class="material-symbols-outlined habbit-icon">
+                                    delete
+                                </span>
+                                Вилучити з активних
+                            </p>
+                        {% endif %}
+                            <p class="habbit-btn habbit-delete" onclick="window.location.href='/delete?q={{ i[1] }}'">
+                            <span class="material-symbols-outlined habbit-icon">
+                                delete_forever
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% include 'menu.html' %}
+    </main>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

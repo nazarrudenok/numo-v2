@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нумо</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <p class="logo" onclick="window.location.href='/'">Нумо</p>
+        <div class="nav-items">
+            <span class="material-symbols-outlined icon" onclick="window.location.href='{{ action }}'">
+                person
+            </span>
+        </div>
+    </header>
+    <main class="main">
+        <div class="haslo">
+            <p class="haslo-title">Мотивація...</p>
+            <p class="haslo-text">Так. Це все.</p>
+        </div>
+        <div class="arrow-cont">
+            <img src="/static/images/main_arrow.png"class="arrow">
+        </div>
+        <div class="main-text-cont">
+            <p class="main-text"><span class="detail">Це все</span>, що вам потрібно, аби <span class="detail">завести корисну ініціативу</span> у власне життя.</p>
+        </div>
+        <div class="why-cont">
+            <div class="why-title">Чому ми?</div>
+            <img src="/static/images/what_we.png" class="why-arrow">
+        </div>
+        <div class="mission-cont">
+            <p class="mission-title">Місія «Нумо» -</p>
+            <p class="mission-text">Сформувати <span class="detail">спільноту</span>, де суспільство <span class="detail">надихатиме</span> та <span class="detail">підтримуватиме</span> одне одного для досягнення особистісних <span class="detail">цілей</span>.</p>
+        </div>
+        <div class="goals-cont">
+            <div class="goals-title">Цілі:</div>
+            <div class="goals">
+                <div class="goal">
+                    <p class="key">1</p>
+                    <p class="value">Підвищення рівня самодисципліни серед молоді</p>
+                </div>
+                <div class="goal">
+                    <p class="key yellow">2</p>
+                    <p class="value">Покращення успішності користувачів</p>
+                </div>
+                <div class="goal">
+                    <p class="key">3</p>
+                    <p class="value">Поширення цінностей здорового способу життя та саморозвитку</p>
+                </div>
+                <div class="goal">
+                    <p class="key yellow">4</p>
+                    <p class="value">Позбутися ліні та прокрастинації, які заважають у досягненні цілей</p>
+                </div>
+                <hr class="hr">
+            </div>
+        </div>
+        <div class="mission-cont">
+            <p class="mission-title">Мета:</p>
+            <p class="mission-text"><span class="detail2">Допомогти людям</span> покращувати самодисципліну на основі <span class="detail2">створення звичок</span>, завдяки <span class="detail">взаємодопомоги</span> та <span class="detail">мотивації</span>.</p>
+        </div>
+        <div class="quote-cont">
+            <div class="quote">
+                <svg  xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="#898121" class="bi bi-quote" viewBox="0 0 16 16">
+                    <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388q0-.527.062-1.054.093-.558.31-.992t.559-.683q.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 9 7.558V11a1 1 0 0 0 1 1zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612q0-.527.062-1.054.094-.558.31-.992.217-.434.559-.683.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 3 7.558V11a1 1 0 0 0 1 1z"/>
+                </svg>
+            </div>
+            <div class="quote-title">«<span class="detail2 detail3">Нумо</span>» - це <span class="detail">команда</span>, яка перемагає разом</div>
+        </div>
+    </main>
+</body>
+</html>
